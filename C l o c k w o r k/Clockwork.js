@@ -16,6 +16,7 @@ window.onload=function(){
 		var face = paper.circle( 400, 400, 210 );
 		face.attr({ fill: " #e6e6e6", stroke: "#cccccc", "stroke-width": 8});
 		
+		// Draws the hour indices_______________________________________________
 		function drawIndices() {
 			var Indices12 = paper.path("M 400 400 L 400 220")
 			var Indices1 = paper.path("M 400 400 L 400 220")
@@ -41,14 +42,16 @@ window.onload=function(){
 			var Indices11 = paper.path("M 400 400 L 400 220")
 			.animate({transform: [ 'r', + 330, 400, 400 ] } );
 			var indicesSet = paper.set();
-			indicesSet.push(Indices1, Indices2, Indices3, Indices4, Indices5, Indices6,
-			Indices7, Indices8, Indices9, Indices10, Indices11, Indices12)
+			indicesSet.push(Indices1, Indices2, Indices3, Indices4, Indices5, 
+			Indices6, Indices7, Indices8, Indices9, Indices10, Indices11, 
+			Indices12)
 			indicesSet.attr({"fill": "black","stroke":"#808080",
 			"stroke-width":"1.5px",
 			"stroke-linecap": "bevel",
 			"stroke-linejoin": "bevel"});
 		}
 
+		// Draws the minute indices_____________________________________________
 		function drawMinuteTrack() {
 			// Draws the minute track between the 12 - 1 indices
 			var minuteTrack1 = paper.path("M 400 400 L 400 220")
@@ -186,17 +189,30 @@ window.onload=function(){
 			"stroke-linejoin": "bevel"});
 		}
 
-		drawMinuteTrack();
-		var indicesBLocker = paper.circle( 400, 400, 160 ).attr({fill: ' #e6e6e6', stroke: " "});
-		drawIndices();
-		var indicesBLocker2 = paper.circle( 400, 400, 145 ).attr({fill: ' #e6e6e6', stroke: " "});
+		// Aesthetic design of the dial will be drawn when called_______________
+		function drawFaceDetails() {
+			// Calls the draw minuteTrackFunction, thus displaying the 48 small face indices
+			drawMinuteTrack();
+			
+			// Draws a grey circle to cover the undesired visible part of path of the minute indices
+			var minuteIndicesBlocker = paper.circle( 400, 400, 160 ).attr({fill: ' #e6e6e6', stroke: " "});
+			
+			// Calls the drawIndices() function, thus drawing the 12 larger face indices
+			drawIndices();
 
-		var lcd = paper.rect( 365, 437, 70, 25 );
-		lcd.attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+			// Draws a grey circle to cover the undesired visible part of path of the hour indices
+			var hourIndicesBlocker2 = paper.circle( 400, 400, 145 ).attr({fill: ' #e6e6e6', stroke: " "});
+			
+			// Draws a box for the digital clock to appear in
+			var lcd = paper.rect( 360, 437, 80, 30 );
+			lcd.attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+			
+			// Draws a box for the date text to appear in
+			var atThree = paper.rect( 420, 385, 100, 30 );
+			atThree.attr({ fill: " #ffffb3", stroke: "" });
+		}
 
-		var atThree = paper.rect( 445, 390, 70, 20 );
-		atThree.attr({ fill: " #ffffb3", stroke: "" });
-
+		// Draws the hour numerals on the dial face_____________________________
 		function numberFace() {
 			var display1 = paper.text( 465, 290, "1" )
 			var display2 = paper.text( 510, 340, "2" )
@@ -219,6 +235,7 @@ window.onload=function(){
 			"stroke-linejoin": "bevel"});
 		}
 
+		// Draws the seconds numerals around the dial's edge ( 5, 10, 15 etc )__
 		function secondsNumberFace() {
 			var second5 = paper.text( 495, 235, "5" )
 			var second10 = paper.text( 565, 305, "10" )
@@ -226,7 +243,7 @@ window.onload=function(){
 			var second20 = paper.text( 565, 495, "20" )
 			var second25 = paper.text( 495, 565, "25" )
 			var second30 = paper.text( 400, 590, "30" )
-			var second35 = paper.text( 300, 560, "35" )
+			var second35 = paper.text( 305, 565, "35" )
 			var second40 = paper.text( 230, 490, "40" )
 			var second45 = paper.text( 210, 400, "45" )
 			var second50 = paper.text( 235, 305, "50" )
@@ -240,45 +257,52 @@ window.onload=function(){
 			"stroke-linecap": "bevel",
 			"stroke-linejoin": "bevel"});
 		}
+
+		// Calling the functions
+		drawFaceDetails();
 		secondsNumberFace();
 		numberFace();
 
-		var hours = paper.rect( 396, 396, 8, 130 );
-		hours.attr({ fill: "#ffff99", stroke: "#a6a6a6", "stroke-width": 3  });
+		var hours = paper.rect( 396, 396, 8, 125 );
+		hours.attr({ fill: "#ffff99", 'fill-opacity': 0, stroke: "#595959", "stroke-width": 3  });
 		var minutes = paper.rect( 398, 399, 5, 160 );
-		minutes.attr({ fill: "#ffff99", stroke: "#a6a6a6", "stroke-width": 3  });
+		minutes.attr({ fill: "#ffff99",  'fill-opacity': 0, stroke: "#595959", "stroke-width": 3  });
 		var seconds = paper.rect( 398, 398 ,5 , 180 );
-		seconds.attr({'stroke-width': 0, fill: '80-#4d4d4d-#fff-#595959'});
+		seconds.attr({'stroke': '#cccccc', 'stroke-width': 1, fill: '80-#4d4d4d-#fff-#595959'});
 		var secondsBalance = paper.rect( 398, 398 ,5 , 60 );
-		secondsBalance.attr({'stroke-width': 0, fill: '80-#bfbfbf-#fff-#737373'});
+		secondsBalance.attr({'stroke': '#cccccc', 'stroke-width': 1, fill: '80-#bfbfbf-#fff-#737373'});
 		var pin = paper.circle(400, 400, 6, 6);
 		pin.attr({ fill: "#808080", stroke: "#ddd", "stroke-width": 1 });
 
 		var displaytext = paper.text(400, 450);
-		displaytext.attr({fill: "#e6e6e6", font: "17px Calibri", "stroke":"#f2f2f2",
-		"stroke-width":"1px",
-		"stroke-linecap": "bevel",
-		"stroke-linejoin": "bevel"});
-			
-		var calendar = paper.text(480, 400);
-		calendar.attr({fill: "#1a1a1a", font: "15px Calibri", "stroke":"#cccccc",
-		"stroke-width":"1px",
+		displaytext.attr({fill: "white", font: "20px Calibri", 
+		"stroke":"#cccccc",
+		"stroke-width":"0.5px",
 		"stroke-linecap": "bevel",
 		"stroke-linejoin": "bevel"});
 		
-		var button = paper.rect(630, 380, 30, 50, 10);
-		button.attr({'stroke-width': 0, fill: '90-#cccccc-#fff-#8c8c8c'});
+		var calendar = paper.text(470, 400);
+		calendar.attr({fill: "#1a1a1a", font: "20px Calibri", 
+		"stroke":"#262626",
+		"stroke-width":"0.5px",
+		"stroke-linecap": "bevel",
+		"stroke-linejoin": "bevel"});
 
-		var button2 = paper.rect(630, 300, 30, 50, 10);
-		button2.attr({'stroke-width': 0, fill: '90-#cccccc-#fff-#8c8c8c'});
-
-		var button3 = paper.rect(630, 500, 30, 50, 10);
-		button3.attr({'stroke-width': 0, fill: '90-#cccccc-#fff-#8c8c8c'});
+		var crownStem = paper.rect( 620, 390 , 40, 30 );
+		crownStem.attr({'stroke': '#cccccc', 'stroke-width': 1, fill: '80-#bfbfbf-#fff-#737373'});
+		var crown = paper.rect(630, 380, 30, 50, 10);
+		crown.attr({'stroke-width': 0, fill: '90-#cccccc-#fff-#8c8c8c'});
 
 		var crystal = paper.circle(400, 400, 200);
-		crystal.attr({fill: 'white','fill-opacity': 0.25,'stroke-width': 1, stroke: "#f2f2f2",});
+		crystal.attr({fill: 'white','fill-opacity': 0.1, 'stroke': ''});
+		var crystal = paper.circle(350, 350, 150);
+		crystal.attr({fill: 'white','fill-opacity': 0.15, 'stroke': ''});
+		var crystal = paper.circle(380, 380, 110);
+		crystal.attr({fill: 'white','fill-opacity': 0.125, 'stroke': ''});
+		var crystal = paper.circle(400, 400, 50);
+		crystal.attr({fill: 'white','fill-opacity': 0.1, 'stroke': ''});
 		
-	// startTime() creates variables storing computer__________________________
+	// startTime() creates variables storing computer___________________________
 	function startTime(){
 
 		var today = new Date();
@@ -290,7 +314,7 @@ window.onload=function(){
 		m = checkTime(m);
 		s = checkTime(s);
 
-		button.click(function(){ 
+		crown.click(function(){ 
 				;
 				displaytext.attr({text: h + 1 + ":" + m + 1 + ":" + s + 1})
 				console.log("working");
@@ -308,17 +332,13 @@ window.onload=function(){
 		
 	}
 
-	// startDate() works like startTime()______________________________________
+	// startDate() works like startTime()_______________________________________
 	function startDate() {
 	
 		var windowDate = new Date();
 		var year = windowDate.getFullYear();
 		var month = windowDate.getMonth();
 		var day = windowDate.getDate();
-		
-		button2.click(function(){ 
-			dayDate.attr({text: day + "|" + month + "|" + year });
-	    });
 
 		calendar.attr({text: day + "|" + month + "|" + year });
 		
@@ -327,12 +347,13 @@ window.onload=function(){
 	
 }
 
+// Makes sure seconds, minutes and hours have a zero when appropriate___________
 function checkTime(i) {
 		if (i < 10) {i = "0" + i};
 		return i;
 }
 
-startTime(); //Function call that starts the startTime function.
+startTime(); //Function call that starts the startTime function_________________
 startDate();
 
 
