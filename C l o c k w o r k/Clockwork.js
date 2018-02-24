@@ -16,12 +16,85 @@ window.onload=function(){
 		var face = paper.circle( 400, 400, 210 );
 		face.attr({ fill: " #e6e6e6", stroke: "#cccccc", "stroke-width": 8});
 		
-		var baton1_7 = paper.path("M 495 250 l -180 290 ");
-		var baton5_11 = paper.path("M 495 545 l -180 -300");
-		var baton3_9 = paper.path("M 220 400 l 360 0 ");
-		var baton8_2 = paper.path("M 550 300 l -300 180 ");
-		var baton10_4 = paper.path("M 255 300 l 300 200");
-		var baton12_6 = paper.path("M 400 230 l 0 340");
+		function drawIndices() {
+			var Indices12 = paper.path("M 400 400 L 400 220");
+			var Indices1 = paper.path("M 400 400 L 490 250");
+			var Indices2 = paper.path("M 400 400 L 550 330");
+			var Indices3 = paper.path("M 400 400 L 600 400");
+			var Indices4 = paper.path("M 400 400 L 550 480");
+			var Indices5 = paper.path("M 400 400 L 500 550");
+			var Indices6 = paper.path("M 400 400 L 400 580");
+			var Indices7 = paper.path("M 400 400 L 300 550");
+			var Indices8 = paper.path("M 400 400 L 250 480");
+			var Indices9 = paper.path("M 400 400 L 200 400");
+			var Indices10 = paper.path("M 400 400 L 232 303");
+			var Indices11 = paper.path("M 400 400 L 300 250");
+		}
+
+		function drawMinuteTrack() {
+			// Draws the minute track between the 12 - 1 indices
+			var minuteTrack1 = paper.path("M 400 400 L 400 220");
+			var minuteTrack2 = paper.path("M 400 400 L 490 250");
+			var minuteTrack3 = paper.path("M 400 400 L 550 330");
+			var minuteTrack4 = paper.path("M 400 400 L 600 400");
+			// Draws the minute track between the 1 - 2 indices
+			var minuteTrack6 = paper.path("M 400 400 L 550 480");
+			var minuteTrack7 = paper.path("M 400 400 L 500 550");
+			var minuteTrack8 = paper.path("M 400 400 L 400 560");
+			var minuteTrack9 = paper.path("M 400 400 L 300 550");
+			// Draws the minute track between the 2 - 3 indices
+			var minuteTrack11 = paper.path("M 400 400 L 250 480");
+			var minuteTrack12 = paper.path("M 400 400 L 200 400");
+			var minuteTrack13 = paper.path("M 400 400 L 232 303");
+			var minuteTrack14 = paper.path("M 400 400 L 300 250");
+			// Draws the minute track between the 3 - 4 indices
+			var minuteTrack16 = paper.path("M 400 400 L 250 480");
+			var minuteTrack17 = paper.path("M 400 400 L 200 400");
+			var minuteTrack18 = paper.path("M 400 400 L 232 303");
+			var minuteTrack19 = paper.path("M 400 400 L 300 250");
+			// Draws the minute track between the 4 - 5 indices
+			var minuteTrack21 = paper.path("M 400 400 L 250 480");
+			var minuteTrack22 = paper.path("M 400 400 L 200 400");
+			var minuteTrack23 = paper.path("M 400 400 L 232 303");
+			var minuteTrack24 = paper.path("M 400 400 L 300 250");
+			// Draws the minute track between the 5 - 6 indices
+			var minuteTrack26 = paper.path("M 400 400 L 250 480");
+			var minuteTrack27 = paper.path("M 400 400 L 200 400");
+			var minuteTrack28 = paper.path("M 400 400 L 232 303");
+			var minuteTrack29 = paper.path("M 400 400 L 300 250");
+			// Draws the minute track between the 6 - 7 indices
+			var minuteTrack31 = paper.path("M 400 400 L 250 480");
+			var minuteTrack32 = paper.path("M 400 400 L 200 400");
+			var minuteTrack33 = paper.path("M 400 400 L 232 303");
+			var minuteTrack34 = paper.path("M 400 400 L 300 250");
+			// Draws the minute track between the 7 - 8 indices
+			var minuteTrack36 = paper.path("M 400 400 L 250 480");
+			var minuteTrack37 = paper.path("M 400 400 L 200 400");
+			var minuteTrack38 = paper.path("M 400 400 L 232 303");
+			var minuteTrack39 = paper.path("M 400 400 L 300 250");
+			// Draws the minute track between the 12 - 1 indices
+			var minuteTrack41 = paper.path("M 400 400 L 250 480");
+			var minuteTrack42 = paper.path("M 400 400 L 200 400");
+			var minuteTrack43 = paper.path("M 400 400 L 232 303");
+			var minuteTrack44 = paper.path("M 400 400 L 300 250");
+
+			var minuteTrack46 = paper.path("M 400 400 L 250 480");
+			var minuteTrack47 = paper.path("M 400 400 L 200 400");
+			var minuteTrack48 = paper.path("M 400 400 L 232 303");
+			var minuteTrack49 = paper.path("M 400 400 L 300 250");
+
+			var minuteTrack51 = paper.path("M 400 400 L 250 480");
+			var minuteTrack52 = paper.path("M 400 400 L 200 400");
+			var minuteTrack53 = paper.path("M 400 400 L 232 303");
+			var minuteTrack54 = paper.path("M 400 400 L 300 250");
+
+			var minuteTrack56 = paper.path("M 400 400 L 250 480");
+			var minuteTrack57 = paper.path("M 400 400 L 200 400");
+			var minuteTrack58 = paper.path("M 400 400 L 232 303");
+			var minuteTrack59 = paper.path("M 400 400 L 300 250");
+		}
+		drawIndices();
+		drawMinuteTrack();
 
 		var indicesBLocker = paper.circle( 400, 400, 150 ).attr({fill: ' #e6e6e6', stroke: " "});
 
@@ -32,51 +105,22 @@ window.onload=function(){
 		atThree.attr({ fill: " #ffffb3", stroke: "" });
 
 		function numberFace() {
-			var display = paper.text( 400, 270, "12" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 400, 530, "6" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 265, 400, "9" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 535, 400, "3" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 465, 290, "1" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 330, 510, "7" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 510, 340, "2" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 280, 460, "8" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 510, 460, "4" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 470, 510, "5" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 290, 340, "10" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
-			"stroke-width":"1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel"});
-			var display = paper.text( 335, 290, "11" ).attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
+			var display1 = paper.text( 465, 290, "1" )
+			var display2 = paper.text( 510, 340, "2" )
+			var display3 = paper.text( 535, 400, "3" )
+			var display4 = paper.text( 510, 460, "4" )
+			var display5 = paper.text( 470, 510, "5" )
+			var display6 = paper.text( 400, 530, "6" )
+			var display7 = paper.text( 330, 510, "7" )
+			var display8 = paper.text( 280, 460, "8" )
+			var display9 = paper.text( 265, 400, "9" )
+			var display10 = paper.text( 290, 340, "10" )
+			var display11 = paper.text( 335, 290, "11" )
+			var display12 = paper.text( 400, 270, "12" )
+			var set = paper.set();
+			set.push(display1, display2, display3, display4, display5, display6,
+				 display7, display8, display9, display10, display11, display12)
+			set.attr({'font-size': 25, 'font-family': 'Arial', "stroke":"#808080",
 			"stroke-width":"1px",
 			"stroke-linecap": "bevel",
 			"stroke-linejoin": "bevel"});
@@ -96,10 +140,16 @@ window.onload=function(){
 		pin.attr({ fill: "#808080", stroke: "#ddd", "stroke-width": 1 });
 
 		var displaytext = paper.text(400, 450);
-		displaytext.attr({fill: "#e6e6e6", font: "17px Calibri"});
+		displaytext.attr({fill: "#e6e6e6", font: "17px Calibri", "stroke":"#f2f2f2",
+		"stroke-width":"1px",
+		"stroke-linecap": "bevel",
+		"stroke-linejoin": "bevel"});
 			
-		var dayDate = paper.text(480, 400);
-		dayDate.attr({fill: "black", font: "15px Calibri"});
+		var calendar = paper.text(480, 400);
+		calendar.attr({fill: "#1a1a1a", font: "15px Calibri", "stroke":"#cccccc",
+		"stroke-width":"1px",
+		"stroke-linecap": "bevel",
+		"stroke-linejoin": "bevel"});
 		
 		var button = paper.rect(630, 380, 30, 50, 10);
 		button.attr({'stroke-width': 0, fill: '90-#cccccc-#fff-#8c8c8c'});
@@ -113,7 +163,8 @@ window.onload=function(){
 		var crystal = paper.circle(400, 400, 200);
 		crystal.attr({fill: 'white','fill-opacity': 0.25,'stroke-width': 1, stroke: "#f2f2f2",});
 		
-function startTime(){
+	// startTime() creates variables storing computer__________________________
+	function startTime(){
 
 		var today = new Date();
 		var h = today.getHours();
@@ -140,10 +191,10 @@ function startTime(){
 		var t = setTimeout(startTime, 500);
 		setTimeout(function(){startTime()},500);
 		
-		
-}
+	}
 
-function startDate() {
+	// startDate() works like startTime()______________________________________
+	function startDate() {
 	
 		var windowDate = new Date();
 		var year = windowDate.getFullYear();
@@ -154,7 +205,7 @@ function startDate() {
 			dayDate.attr({text: day + "|" + month + "|" + year });
 	    });
 
-		dayDate.attr({text: day + "|" + month + "|" + year });
+		calendar.attr({text: day + "|" + month + "|" + year });
 		
 		var t = setTimeout(startDate, 500);
 		setTimeout(function(){startDate()},500);
