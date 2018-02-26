@@ -1,4 +1,7 @@
-
+//
+//                  Candidate number:  1 6 7 8 8 7
+//
+//_____________________________________________________________________________
 
 window.onload = function () {
 
@@ -6,13 +9,13 @@ window.onload = function () {
 
 	var backGround = paper.rect(0, 0, 1000, 800);
 	backGround.attr({ fill: "#e6ffff" });
+	var water = paper.image("water.png", 0, 0, 1000, 800);
 
 	var strap = paper.rect(280, 0, 245, 800);
 	strap.attr({ fill: "black" });
-	var c = paper.image("Junghans_Max_Bill_Automatik.JPG", 280, 0, 245, 800);
+	var leather = paper.image("leather.png", 280, 0, 245, 800);
 
-	var crownStem = paper.rect(625, 390, 40, 30);
-	crownStem.attr({
+	var crownStem = paper.rect(625, 390, 40, 30).attr({
 		'stroke': '#cccccc', 'stroke-width': 1,
 		fill: '80-#bfbfbf-#fff-#737373'
 	});
@@ -244,12 +247,12 @@ window.onload = function () {
 		});
 
 		// Draws a box for the digital clock to appear in
-		var lcd = paper.rect(360, 437, 80, 30);
-		lcd.attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+		var lcd = paper.rect(360, 437, 80, 30).toFront()
+		.attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
 
 		// Draws a box for the date text to appear in
-		var atThree = paper.rect(420, 385, 100, 30);
-		atThree.attr({ fill: " #ffffb3", stroke: "" });
+		var atThree = paper.rect(350, 310, 100, 30).toFront()
+		.attr({ fill: " #ffffb3", stroke: "" });
 	}
 
 	// Draws the hour numerals on the dial face_________________________________
@@ -338,18 +341,16 @@ window.onload = function () {
 	var pin = paper.circle(400, 400, 6, 6);
 	pin.attr({ fill: "#808080", stroke: "#ddd", "stroke-width": 1 });
 
-	var displaytext = paper.text(400, 450);
-	displaytext.attr({
+	var displaytext = paper.text(400, 450).toFront().attr({
 		fill: "white", 
 		font: "20px Calibri",
-		"stroke": "#cccccc",
+		"stroke": "white",
 		"stroke-width": "0.5px",
 		"stroke-linecap": "bevel",
 		"stroke-linejoin": "bevel"
 	});
 
-	var calendar = paper.text(470, 400);
-	calendar.attr({
+	var calendar = paper.text(400, 325).toFront().attr({
 		fill: "#1a1a1a", 
 		font: "20px Calibri",
 		"stroke": "#262626",
@@ -425,8 +426,7 @@ window.onload = function () {
 	//strap.animate({ transform: strap.attr("transform") + "R-6," + 400 + "," + 400 }, 200);
 	//.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 200); 
 	//});
-	
-	var aa = pearl.getBBox();
+
 
 	function rotatingBezel() {
 		diversBezel.click(function() {
@@ -434,12 +434,14 @@ window.onload = function () {
 		diversBezel.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150); 
 		});
 
+		var textBox = paper.rect(600, 30, 300, 100).attr({ fill: 'white', 'fill-opacity': 0.8, 'stroke': ""});
+
 		var explainer = paper.text(750, 75);
 		explainer.attr({
-			fill: "#1a1a1a", 
+			fill: "black", 
 			font: "15px Calibri",
-			"stroke": "#262626",
-			"stroke-width": "0.5px",
+			"stroke": "black",
+			"stroke-width": "0.1px",
 			"stroke-linecap": "bevel",
 			"stroke-linejoin": "bevel",
 			text: "To use the rotating diver's bezel, you click on\
@@ -449,11 +451,10 @@ window.onload = function () {
 		});
 	}
 
-
+	var glass = paper.image("glass5.png", 200, 200, 400, 400);
 
 	rotatingBezel();
 	startTime(); //Function call that starts the startTime function_____________
 	startDate();
 
 };
-
