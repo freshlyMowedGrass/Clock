@@ -2,13 +2,14 @@
 
 window.onload = function () {
 
-	var paper = new Raphael(0, 0, 800, 800);
+	var paper = new Raphael(0, 0, 1000, 800);
 
-	var backGround = paper.rect(0, 0, 800, 800);
+	var backGround = paper.rect(0, 0, 1000, 800);
 	backGround.attr({ fill: "#e6ffff" });
 
 	var strap = paper.rect(280, 0, 245, 800);
 	strap.attr({ fill: "black" });
+	var c = paper.image("Junghans_Max_Bill_Automatik.JPG", 280, 0, 245, 800);
 
 	var crownStem = paper.rect(625, 390, 40, 30);
 	crownStem.attr({
@@ -27,12 +28,6 @@ window.onload = function () {
 	var pearl = paper.path("M 386 150 L 415 150 L 400 175 Z").attr({
 		'stroke-width': 1, stroke: "#ffff80",
 		fill: "#ffffb3"
-	});
-
-	diversBezel.click(function () {
-		pearl.animate({ transform: ['r', -6, 400, 400]});
-		diversBezel.animate({ transform: ['r', -6] }, 400,)
-		;
 	});
 
 	var housing = paper.circle(400, 400, 220);
@@ -345,7 +340,8 @@ window.onload = function () {
 
 	var displaytext = paper.text(400, 450);
 	displaytext.attr({
-		fill: "white", font: "20px Calibri",
+		fill: "white", 
+		font: "20px Calibri",
 		"stroke": "#cccccc",
 		"stroke-width": "0.5px",
 		"stroke-linecap": "bevel",
@@ -354,7 +350,8 @@ window.onload = function () {
 
 	var calendar = paper.text(470, 400);
 	calendar.attr({
-		fill: "#1a1a1a", font: "20px Calibri",
+		fill: "#1a1a1a", 
+		font: "20px Calibri",
 		"stroke": "#262626",
 		"stroke-width": "0.5px",
 		"stroke-linecap": "bevel",
@@ -363,13 +360,13 @@ window.onload = function () {
 
 	function drawCrystal(){
 		var crystal = paper.circle(400, 400, 200);
-		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': '' });
+		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': '#d9d9d9', "stroke-width": "0.5px"});
 		var crystal = paper.circle(350, 350, 150);
 		crystal.attr({ fill: 'white', 'fill-opacity': 0.15, 'stroke': '' });
 		var crystal = paper.circle(380, 380, 110);
 		crystal.attr({ fill: 'white', 'fill-opacity': 0.125, 'stroke': '' });
 		var crystal = paper.circle(400, 400, 50);
-		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': '' });
+		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': ""});
 	}
 
 	// startTime() creates variables storing computer___________________________
@@ -383,10 +380,6 @@ window.onload = function () {
 		h = checkTime(h);
 		m = checkTime(m);
 		s = checkTime(s);
-
-		crown.click(function () {
-			console.log( "-" );
-		});
 
 		displaytext.attr({ text: h + ":" + m + ":" + s })
 
@@ -405,7 +398,7 @@ window.onload = function () {
 
 		var windowDate = new Date();
 		var year = windowDate.getFullYear();
-		var month = windowDate.getMonth()+1;
+		var month = windowDate.getMonth() +1 ;
 		var day = windowDate.getDate();
 
 		month = changeMonth(month);
@@ -428,10 +421,37 @@ window.onload = function () {
 		return i;
 	}
 
-	strap.click(function () {
-		changeMonth();
-	});
+	//strap.click(function () {
+	//strap.animate({ transform: strap.attr("transform") + "R-6," + 400 + "," + 400 }, 200);
+	//.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 200); 
+	//});
+	
+	var aa = pearl.getBBox();
 
+	function rotatingBezel() {
+		diversBezel.click(function() {
+		pearl.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150);
+		diversBezel.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150); 
+		});
+
+		var explainer = paper.text(750, 75);
+		explainer.attr({
+			fill: "#1a1a1a", 
+			font: "15px Calibri",
+			"stroke": "#262626",
+			"stroke-width": "0.5px",
+			"stroke-linecap": "bevel",
+			"stroke-linejoin": "bevel",
+			text: "To use the rotating diver's bezel, you click on\
+			it \nuntil the triangle aligns with the minute hand. \nThen\
+			you can keep track of how much time has\n elapsed since you\
+			last looked at the time."
+		});
+	}
+
+
+
+	rotatingBezel();
 	startTime(); //Function call that starts the startTime function_____________
 	startDate();
 
