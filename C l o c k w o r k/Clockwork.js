@@ -1,6 +1,6 @@
 //
 //                  Candidate number:  1 6 7 8 8 7
-//
+//                           26 / 2 / 2018
 //_____________________________________________________________________________
 
 window.onload = function () {
@@ -9,7 +9,7 @@ window.onload = function () {
 
 	var backGround = paper.rect(0, 0, 1000, 800);
 	backGround.attr({ fill: "#e6ffff" });
-	var water = paper.image("water.png", 0, 0, 1000, 800);
+	var water = paper.image("water2.png", 0, 0, 1000, 800);
 
 	var strap = paper.rect(280, 0, 245, 800);
 	strap.attr({ fill: "black" });
@@ -394,6 +394,10 @@ window.onload = function () {
 
 	}
 
+var yea = 1;
+var mont = 1;
+var dey = 1;
+
 	// startDate() works like startTime()_______________________________________
 	function startDate() {
 
@@ -409,6 +413,10 @@ window.onload = function () {
 		var t = setTimeout(startDate, 500);
 		setTimeout(function () { startDate() }, 500);
 
+		crown.click(function () {
+			calendar.attr({ text: day + 1 +"|" + month + 1 + "|" + year + 1 });
+		});
+
 	}
 
 	// Makes sure seconds, minutes and hours have a zero when appropriate_______
@@ -422,36 +430,33 @@ window.onload = function () {
 		return i;
 	}
 
-	//strap.click(function () {
-	//strap.animate({ transform: strap.attr("transform") + "R-6," + 400 + "," + 400 }, 200);
-	//.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 200); 
-	//});
-
-
 	function rotatingBezel() {
-		diversBezel.click(function() {
-		pearl.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150);
-		diversBezel.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150); 
-		});
+		var textBox = paper.rect(600, 30, 300, 100, 10).attr({ fill: 'white', 
+		'fill-opacity': 0.6, 'stroke': ""});
+		var redArrow = paper.path("M  600 130 L 580 180 L 600 190 L 550 220\
+		 L 540 160 L 560 170 L 600 70").attr({fill: "red", "stroke": "#80bfff",
+		 "stroke-width": "0.8px",})
 
-		var textBox = paper.rect(600, 30, 300, 100).attr({ fill: 'white', 'fill-opacity': 0.8, 'stroke': ""});
-
-		var explainer = paper.text(750, 75);
+		var explainer = paper.text(750, 78);
 		explainer.attr({
 			fill: "black", 
 			font: "15px Calibri",
 			"stroke": "black",
 			"stroke-width": "0.1px",
-			"stroke-linecap": "bevel",
-			"stroke-linejoin": "bevel",
 			text: "To use the rotating diver's bezel, you click on\
 			it \nuntil the triangle aligns with the minute hand. \nThen\
-			you can keep track of how much time has\n elapsed since you\
-			last looked at the time."
+			as time goes on, you can keep track of \nhow much time has elapsed since you\
+			last \nlooked at your watch, like divers do."
 		});
+
+		diversBezel.click(function() {
+		pearl.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150);
+		diversBezel.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150); 
+		});
+
 	}
 
-	var glass = paper.image("glass5.png", 200, 200, 400, 400);
+	var glass = paper.image("glassNew.png", 200, 200, 400, 400);
 
 	rotatingBezel();
 	startTime(); //Function call that starts the startTime function_____________
