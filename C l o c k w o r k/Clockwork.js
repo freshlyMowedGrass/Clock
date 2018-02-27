@@ -378,6 +378,13 @@ window.onload = function () {
 		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': "" });
 	}
 
+	var hoursUp = paper.circle(700,600,10).attr({fill: "pink"});
+	var hoursDown = paper.circle(700,620,10).attr({fill: "pink"});
+	var minutesUp = paper.circle(750,600,10).attr({fill: "pink"});
+	var minutesDown = paper.circle(750,620,10).attr({fill: "pink"});
+	var secondsUp = paper.circle(800,600,10).attr({fill: "pink"});
+	var secondsDown = paper.circle(800,620,10).attr({fill: "pink"});
+
 	// startTime() creates variables storing computer time______________________
 	function startTime() {
 
@@ -395,10 +402,10 @@ window.onload = function () {
 		displaytext.attr({ text: h + ":" + m + ":" + s })
 
 		// Analogue clock hands animated off data from digital clock's variables
-		seconds.animate({ transform: ['r', (s * 6) + 180, 400, 400] });
-		secondsBalance.animate({ transform: ['r', (s * 6) + 0, 400, 400] });
-		minutes.animate({ transform: ['r', (m * 6) + 180, 400, 400] });
-		hours.animate({ transform: ['r', (h * 30) + 180, 400, 400] });
+		seconds.animate        ({ transform: ['r', (s * 6 ) + 180, 400, 400] });
+		secondsBalance.animate ({ transform: ['r', (s * 6 ) + 0,   400, 400] });
+		minutes.animate        ({ transform: ['r', (m * 6 ) + 180, 400, 400] });
+		hours.animate          ({ transform: ['r', (h * 30) + 180, 400, 400] });
 
 		console.log("startTime");
 		var t = setTimeout(startTime, 500);
@@ -410,60 +417,47 @@ window.onload = function () {
 		return i;
 	}
 
-	var button = paper.circle(50,50,40).attr({fill: "pink"});
-	//	strap.click(function (){
-	//		x = windowDate.setFullYear(windowDate.getFullYear()+1);
-	//		console.log("fgsdg");
-	//	})
+	var dayUp     = paper.circle(700,700,10).attr({fill: "pink"});
+	var dayDown   = paper.circle(700,720,10).attr({fill: "pink"});
+	var monthUp   = paper.circle(750,700,10).attr({fill: "pink"});
+	var monthDown = paper.circle(750,720,10).attr({fill: "pink"});
+	var yearUp    = paper.circle(800,700,10).attr({fill: "pink"});
+	var yearDown  = paper.circle(800,720,10).attr({fill: "pink"});
 
-	var isClicked = false;
+	var date = new Date();
+	var year  = date.getFullYear();
+	var month = date.getMonth() + 1;
+	var day   = date.getDate();
 
+	dayUp.click(function () {
+		changeDay(day);
 
-	button.click(function () {
-		isClicked = true;
-		changeDay(dey);
 		console.log("isClicked was clicked");
-		console.log(isClicked);
+		console.log(day);
 	});
 
-	function arg(){
-		if (isClicked == true) {
-			changeDay(dey);
-			isClicked = false;
-			console.log("boolConditionReached");
-			var t = setTimeout(startDate, 500);
-		};
+	dayDown.click(function () {
+		changeDay(day);
+
+		console.log("isClicked was clicked");
+	});
+
+	function changeDay(i) {
+		day++;
 	}
 
-	function changeDay(i) {	
-		dey ++;
-		}
 	
-	arg();
-
-	var ninePm = new Date();
-	var yea = ninePm.getFullYear();
-	var mont = ninePm.getMonth() + 1;
-	var dey = ninePm.getDate();
-	var idk = dey;
 
 	// startDate() works like startTime()_______________________________________
 	function startDate() {
 
-		var windowDate = new Date();
-		var year = windowDate.getFullYear();
-		var month = windowDate.getMonth() + 1;
-		var day = windowDate.getDate();
+		if (day >31){day=1}
 
-		calendar.attr({ text: dey + "|" + month + "|" + year });
+		calendar.attr({ text: day + "|" + month + "|" + year });
 
 		console.log("startDate");
 		var t = setTimeout(startDate, 500);
 	}
-
-
-
-
 
 	function rotatingBezel() {
 		var textBox = paper.rect(600, 30, 300, 100, 10).attr({
