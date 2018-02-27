@@ -409,40 +409,43 @@ window.onload = function () {
 		if (i < 10) { i = "0" + i };
 		return i;
 	}
+
+	var button = paper.circle(50,50,40).attr({fill: "pink"});
 	//	strap.click(function (){
 	//		x = windowDate.setFullYear(windowDate.getFullYear()+1);
 	//		console.log("fgsdg");
 	//	})
+
+	var isClicked = false;
+
+
+	button.click(function () {
+		isClicked = true;
+		changeDay(dey);
+		console.log("isClicked was clicked");
+		console.log(isClicked);
+	});
+
+	function arg(){
+		if (isClicked == true) {
+			changeDay(dey);
+			isClicked = false;
+			console.log("boolConditionReached");
+			var t = setTimeout(startDate, 500);
+		};
+	}
+
+	function changeDay(i) {	
+		dey ++;
+		}
+	
+	arg();
+
 	var ninePm = new Date();
 	var yea = ninePm.getFullYear();
 	var mont = ninePm.getMonth() + 1;
 	var dey = ninePm.getDate();
-
-	var isClicked = false;
-
-	var button = paper.circle(50,50,40).attr({fill: "pink"});
-
-	button.click(function () {
-		changeDay(dey);
-		isClicked = true;
-		console.log("isClicked was clicked");
-	});
-
-	if (isClicked = true) {
-		changeDay(dey);
-		isClicked = false;
-		console.log("boolConditionReached");
-	};
-
-	function changeDay(i) {
-			isClicked = false;
-			if (isClicked == true){
-		    var hold = new Date();
-			var theDay = hold.getDate();
-			i = theDay;
-			return i + 1;
-		}
-	}
+	var idk = dey;
 
 	// startDate() works like startTime()_______________________________________
 	function startDate() {
@@ -455,8 +458,12 @@ window.onload = function () {
 		calendar.attr({ text: dey + "|" + month + "|" + year });
 
 		console.log("startDate");
-		var t = setTimeout(startDate, 3600000);
+		var t = setTimeout(startDate, 500);
 	}
+
+
+
+
 
 	function rotatingBezel() {
 		var textBox = paper.rect(600, 30, 300, 100, 10).attr({
