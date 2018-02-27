@@ -4,9 +4,9 @@
 //_____________________________________________________________________________
 
 window.onload = function () {
-'use strict';
+	'use strict';
 
-var paper = new Raphael(0, 0, 1000, 800);
+	var paper = new Raphael(0, 0, 1000, 800);
 
 	var backGround = paper.rect(0, 0, 1000, 800);
 	backGround.attr({ fill: "#e6ffff" });
@@ -249,12 +249,12 @@ var paper = new Raphael(0, 0, 1000, 800);
 		});
 
 		// Draws a box for the digital clock to appear in
-		var lcd = paper.rect(360, 437, 80, 30).toFront()
-		.attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+		var lcd = paper.rect(360, 437, 80, 30, 10).toFront()
+			.attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
 
 		// Draws a box for the date text to appear in
-		var atThree = paper.rect(350, 310, 100, 30).toFront()
-		.attr({ fill: " #ffffb3", stroke: "" });
+		var atThree = paper.rect(350, 310, 100, 30, 10).toFront()
+			.attr({ fill: " #ffffb3", stroke: "" });
 	}
 
 	// Draws the hour numerals on the dial face_________________________________
@@ -291,10 +291,10 @@ var paper = new Raphael(0, 0, 1000, 800);
 		var second25 = paper.text(495, 565, "25")
 		var second30 = paper.text(400, 590, "30")
 		var second35 = paper.text(305, 565, "35")
-		var second40 = paper.text(230, 490, "40")
+		var second40 = paper.text(235, 495, "40")
 		var second45 = paper.text(210, 400, "45")
 		var second50 = paper.text(235, 305, "50")
-		var second55 = paper.text(300, 235, "55")
+		var second55 = paper.text(305, 235, "55")
 		var second60 = paper.text(400, 210, "60")
 		var secondMinuteNumberSet = paper.set();
 		secondMinuteNumberSet.push(second60, second5, second10, second15,
@@ -316,19 +316,25 @@ var paper = new Raphael(0, 0, 1000, 800);
 	numberFace();
 	drawCrystal();
 
-	var hours = paper.rect(396, 396, 8, 105);
+	// Creating the second, minute and hour hands. 
+	// Creating a "balance" to go on the back end of the seconds hand
+	// Creating the centre pin
+	// Creating the digital clock
+	// Creating the calendar / date 
+
+	var hours = paper.rect(396, 396, 8, 105, 10);
 	hours.attr({
 		fill: "#ffff99", 'fill-opacity': 0, stroke: "#595959",
 		"stroke-width": 3
 	});
 
-	var minutes = paper.rect(398, 399, 5, 160);
+	var minutes = paper.rect(398, 399, 5, 160, 20);
 	minutes.attr({
 		fill: "#ffff99", 'fill-opacity': 0, stroke: "#595959",
 		"stroke-width": 3
 	});
 
-	var seconds = paper.rect(398, 398, 5, 180);
+	var seconds = paper.rect(398, 398, 5, 180, 50);
 	seconds.attr({
 		'stroke': '#cccccc', 'stroke-width': 1,
 		fill: '80-#4d4d4d-#fff-#595959'
@@ -344,7 +350,7 @@ var paper = new Raphael(0, 0, 1000, 800);
 	pin.attr({ fill: "#808080", stroke: "#ddd", "stroke-width": 1 });
 
 	var displaytext = paper.text(400, 450).toFront().attr({
-		fill: "white", 
+		fill: "white",
 		font: "20px Calibri",
 		"stroke": "white",
 		"stroke-width": "0.5px",
@@ -353,7 +359,7 @@ var paper = new Raphael(0, 0, 1000, 800);
 	});
 
 	var calendar = paper.text(400, 325).toFront().attr({
-		fill: "#1a1a1a", 
+		fill: "#1a1a1a",
 		font: "20px Calibri",
 		"stroke": "#262626",
 		"stroke-width": "0.5px",
@@ -361,40 +367,40 @@ var paper = new Raphael(0, 0, 1000, 800);
 		"stroke-linejoin": "bevel"
 	});
 
-	function drawCrystal(){
+	function drawCrystal() {
 		var crystal = paper.circle(400, 400, 200);
-		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': '#d9d9d9', "stroke-width": "0.5px"});
+		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': '#d9d9d9', "stroke-width": "0.5px" });
 		var crystal = paper.circle(350, 350, 150);
 		crystal.attr({ fill: 'white', 'fill-opacity': 0.15, 'stroke': '' });
 		var crystal = paper.circle(380, 380, 110);
 		crystal.attr({ fill: 'white', 'fill-opacity': 0.125, 'stroke': '' });
 		var crystal = paper.circle(400, 400, 50);
-		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': ""});
+		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': "" });
 	}
 
-	// startTime() creates variables storing computer___________________________
+	// startTime() creates variables storing computer time______________________
 	function startTime() {
 
 		var today = new Date();
 		var h = today.getHours();
 		var m = today.getMinutes();
 		var s = today.getSeconds();
+		var ms = today.getMilliseconds();
 
 		h = checkTime(h);
 		m = checkTime(m);
 		s = checkTime(s);
 
-		// Digital clock visual
+		// Digital clock feeds off these variables
 		displaytext.attr({ text: h + ":" + m + ":" + s })
 
-		// Analogue clock visual
-		seconds.animate		   ({ transform: ['r', (s * 6 ) + 180, 400, 400] });
-		secondsBalance.animate ({ transform: ['r', (s * 6 ) +   0, 400, 400] });
-		minutes.animate	   	   ({ transform: ['r', (m * 6 ) + 180, 400, 400] });
-		hours.animate		   ({ transform: ['r', (h * 30) + 180, 400, 400] });
+		// Analogue clock hands animated off data from digital clock's variables
+		seconds.animate({ transform: ['r', (s * 6) + 180, 400, 400] });
+		secondsBalance.animate({ transform: ['r', (s * 6) + 0, 400, 400] });
+		minutes.animate({ transform: ['r', (m * 6) + 180, 400, 400] });
+		hours.animate({ transform: ['r', (h * 30) + 180, 400, 400] });
 
 		console.log("startTime");
-
 		var t = setTimeout(startTime, 500);
 	}
 
@@ -403,46 +409,69 @@ var paper = new Raphael(0, 0, 1000, 800);
 		if (i < 10) { i = "0" + i };
 		return i;
 	}
+	//	strap.click(function (){
+	//		x = windowDate.setFullYear(windowDate.getFullYear()+1);
+	//		console.log("fgsdg");
+	//	})
+	var ninePm = new Date();
+	var yea = ninePm.getFullYear();
+	var mont = ninePm.getMonth() + 1;
+	var dey = ninePm.getDate();
 
-var yea = 1;
-var mont = 1;
-var dey = 1;
+	var isClicked = false;
+
+	var button = paper.circle(50,50,40).attr({fill: "pink"});
+
+	button.click(function () {
+		changeDay(dey);
+		isClicked = true;
+		console.log("isClicked was clicked");
+	});
+
+	if (isClicked = true) {
+		changeDay(dey);
+		isClicked = false;
+		console.log("boolConditionReached");
+	};
+
+	function changeDay(i) {
+			isClicked = false;
+			if (isClicked == true){
+		    var hold = new Date();
+			var theDay = hold.getDate();
+			i = theDay;
+			return i + 1;
+		}
+	}
 
 	// startDate() works like startTime()_______________________________________
 	function startDate() {
 
 		var windowDate = new Date();
 		var year = windowDate.getFullYear();
-		var month = windowDate.getMonth() +1 ;
+		var month = windowDate.getMonth() + 1;
 		var day = windowDate.getDate();
 
-//		month = changeMonth(month);
-
-		calendar.attr({ text: day + "|" + month + "|" + year });
+		calendar.attr({ text: dey + "|" + month + "|" + year });
 
 		console.log("startDate");
-
 		var t = setTimeout(startDate, 3600000);
-
-//		crown.click(function () {
-//			calendar.attr({ text: day + 1 +"|" + month + 1 + "|" + year + 1 });
-//		});
-	}
-	function changeMonth(i) {
-		i ++;
-		return i;
 	}
 
 	function rotatingBezel() {
-		var textBox = paper.rect(600, 30, 300, 100, 10).attr({ fill: 'white', 
-		'fill-opacity': 0.6, 'stroke': ""});
+		var textBox = paper.rect(600, 30, 300, 100, 10).attr({
+			fill: 'white',
+			'fill-opacity': 0.6, 'stroke': ""
+		});
 		var redArrow = paper.path("M  600 130 L 580 180 L 600 190 L 550 220\
-		 L 540 160 L 560 170 L 600 70").attr({fill: "red", "stroke": "#80bfff",
-		 "stroke-width": "0.8px",})
+		 L 540 160 L 560 170 L 600 70").attr({
+				fill: "red", "stroke": "#80bfff",
+				"stroke-width": "0.8px",
+			})
 
 		var explainer = paper.text(750, 78);
 		explainer.attr({
-			fill: "black", 
+			fill: "black",
 			font: "15px Calibri",
 			"stroke": "black",
 			"stroke-width": "0.1px",
@@ -452,9 +481,9 @@ var dey = 1;
 			last \nlooked at your watch, like divers do."
 		});
 
-		diversBezel.click(function() {
-		pearl.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150);
-		diversBezel.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150); 
+		diversBezel.click(function () {
+			pearl.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150);
+			diversBezel.animate({ transform: pearl.attr("transform") + "R-6," + 400 + "," + 400 }, 150);
 		});
 
 	}
@@ -462,7 +491,7 @@ var dey = 1;
 	var glass = paper.image("glassNew.png", 200, 200, 400, 400);
 
 	rotatingBezel();
-	startTime(); //Function call that starts the startTime function_____________
+	startTime();          //Function call that starts the startTime function_____________
 	startDate();
 
 };
