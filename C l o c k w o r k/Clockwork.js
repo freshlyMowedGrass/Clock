@@ -4,8 +4,9 @@
 //_____________________________________________________________________________
 
 window.onload = function () {
+'use strict';
 
-	var paper = new Raphael(0, 0, 1000, 800);
+var paper = new Raphael(0, 0, 1000, 800);
 
 	var backGround = paper.rect(0, 0, 1000, 800);
 	backGround.attr({ fill: "#e6ffff" });
@@ -77,6 +78,7 @@ window.onload = function () {
 			"stroke-linecap": "bevel",
 			"stroke-linejoin": "bevel"
 		});
+		console.log("drawIndices");
 	}
 
 	// Draws the minute indices_________________________________________________
@@ -382,16 +384,24 @@ window.onload = function () {
 		m = checkTime(m);
 		s = checkTime(s);
 
+		// Digital clock visual
 		displaytext.attr({ text: h + ":" + m + ":" + s })
 
+		// Analogue clock visual
 		seconds.animate		   ({ transform: ['r', (s * 6 ) + 180, 400, 400] });
 		secondsBalance.animate ({ transform: ['r', (s * 6 ) +   0, 400, 400] });
 		minutes.animate	   	   ({ transform: ['r', (m * 6 ) + 180, 400, 400] });
 		hours.animate		   ({ transform: ['r', (h * 30) + 180, 400, 400] });
 
-		var t = setTimeout(startTime, 500);
-		setTimeout(function () { startTime() }, 500);
+		console.log("startTime");
 
+		var t = setTimeout(startTime, 500);
+	}
+
+	// Makes sure seconds, minutes and hours have a zero when appropriate_______
+	function checkTime(i) {
+		if (i < 10) { i = "0" + i };
+		return i;
 	}
 
 var yea = 1;
@@ -406,25 +416,18 @@ var dey = 1;
 		var month = windowDate.getMonth() +1 ;
 		var day = windowDate.getDate();
 
-		month = changeMonth(month);
+//		month = changeMonth(month);
 
 		calendar.attr({ text: day + "|" + month + "|" + year });
 
-		var t = setTimeout(startDate, 500);
-		setTimeout(function () { startDate() }, 500);
+		console.log("startDate");
 
-		crown.click(function () {
-			calendar.attr({ text: day + 1 +"|" + month + 1 + "|" + year + 1 });
-		});
+		var t = setTimeout(startDate, 3600000);
 
+//		crown.click(function () {
+//			calendar.attr({ text: day + 1 +"|" + month + 1 + "|" + year + 1 });
+//		});
 	}
-
-	// Makes sure seconds, minutes and hours have a zero when appropriate_______
-	function checkTime(i) {
-		if (i < 10) { i = "0" + i };
-		return i;
-	}
-
 	function changeMonth(i) {
 		i ++;
 		return i;
