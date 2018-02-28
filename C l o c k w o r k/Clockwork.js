@@ -259,15 +259,15 @@ window.onload = function () {
 
 	// Draws the hour numerals on the dial face_________________________________
 	function numberFace() {
-		var display1 = paper.text(465, 290, "1")
-		var display2 = paper.text(510, 340, "2")
-		var display3 = paper.text(530, 400, "3")
-		var display4 = paper.text(510, 460, "4")
-		var display5 = paper.text(465, 510, "5")
-		var display6 = paper.text(400, 530, "6")
-		var display7 = paper.text(335, 510, "7")
-		var display8 = paper.text(290, 460, "8")
-		var display9 = paper.text(270, 400, "9")
+		var display1  = paper.text(465, 290, "1" )
+		var display2  = paper.text(510, 340, "2" )
+		var display3  = paper.text(530, 400, "3" )
+		var display4  = paper.text(510, 460, "4" )
+		var display5  = paper.text(465, 510, "5" )
+		var display6  = paper.text(400, 530, "6" )
+		var display7  = paper.text(335, 510, "7" )
+		var display8  = paper.text(290, 460, "8" )
+		var display9  = paper.text(270, 400, "9" )
 		var display10 = paper.text(290, 340, "10")
 		var display11 = paper.text(335, 290, "11")
 		var display12 = paper.text(400, 270, "12")
@@ -284,7 +284,7 @@ window.onload = function () {
 
 	// Draws the seconds numerals around the dial's edge ( 5, 10, 15 etc )______
 	function secondsNumberFace() {
-		var second5 = paper.text(495, 235, "5")
+		var second5  = paper.text(495, 235, "5" )
 		var second10 = paper.text(565, 305, "10")
 		var second15 = paper.text(590, 400, "15")
 		var second20 = paper.text(565, 495, "20")
@@ -378,11 +378,11 @@ window.onload = function () {
 		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': "" });
 	}
 
-	var hoursUp = paper.circle(700,600,10).attr({fill: "pink"});
-	var hoursDown = paper.circle(700,620,10).attr({fill: "pink"});
-	var minutesUp = paper.circle(750,600,10).attr({fill: "pink"});
+	var hoursUp     = paper.circle(700,600,10).attr({fill: "pink"});
+	var hoursDown   = paper.circle(700,620,10).attr({fill: "pink"});
+	var minutesUp   = paper.circle(750,600,10).attr({fill: "pink"});
 	var minutesDown = paper.circle(750,620,10).attr({fill: "pink"});
-	var secondsUp = paper.circle(800,600,10).attr({fill: "pink"});
+	var secondsUp   = paper.circle(800,600,10).attr({fill: "pink"});
 	var secondsDown = paper.circle(800,620,10).attr({fill: "pink"});
 
 	// startTime() creates variables storing computer time______________________
@@ -431,22 +431,16 @@ window.onload = function () {
 
 	dayUp.click(function () {
 		changeDay(day);
-
-		console.log("isClicked was clicked");
 		console.log(day);
 	});
 
 	dayDown.click(function () {
 		changeDay(day);
-
-		console.log("isClicked was clicked");
 	});
 
 	function changeDay(i) {
 		day++;
 	}
-
-	
 
 	// startDate() works like startTime()_______________________________________
 	function startDate() {
@@ -492,7 +486,7 @@ window.onload = function () {
 	var glass = paper.image("glassNew.png", 200, 200, 400, 400);
 
 	rotatingBezel();
-	startTime();          //Function call that starts the startTime function_____________
+	startTime();          //Function call that starts the startTime function____
 	startDate();
 
 };
