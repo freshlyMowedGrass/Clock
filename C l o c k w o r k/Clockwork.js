@@ -1,8 +1,14 @@
 //
 //                  Candidate number:  1 6 7 8 8 7
-//                           26 / 2 / 2018
-//_____________________________________________________________________________
-
+//                           28 / 2 / 2018
+//______________________________________________________________________________
+//    __     
+//   /  |    
+//    | |    Window onload function followed by drawing some of the SVG assets
+//    | |    Some of the vector graphic drawings are enclosed in functions,
+//   _| |_   these functions are called on lines 323 and 326.
+//  |_____|  
+//
 window.onload = function () {
 	'use strict';
 
@@ -43,7 +49,7 @@ window.onload = function () {
 	var face = paper.circle(400, 400, 210);
 	face.attr({ fill: " #e6e6e6", stroke: "#cccccc", "stroke-width": 8 });
 
-	// Draws the hour indices___________________________________________________
+	// Draws the hour indices
 	function drawIndices() {
 		var Indices12 = paper.path("M 400 400 L 400 220")
 		var Indices1 = paper.path("M 400 400 L 400 220")
@@ -81,8 +87,9 @@ window.onload = function () {
 		console.log("drawIndices");
 	}
 
-	// Draws the minute indices_________________________________________________
+	// Draws the minute indices
 	function drawMinuteTrack() {
+
 		// Draws the minute track between the 12 - 1 indices
 		var minuteTrack1 = paper.path("M 400 400 L 400 220")
 			.animate({ transform: ['r', + 6, 400, 400] });
@@ -203,6 +210,8 @@ window.onload = function () {
 		var minuteTrack59 = paper.path("M 400 400 L 400 220")
 			.animate({ transform: ['r', + 354, 400, 400] });
 
+		// Puts the minute tracks in a set and applies aesthetic attributes 
+		// to the set
 		var minuteTrackSet = paper.set();
 		minuteTrackSet.push(minuteTrack1, minuteTrack2, minuteTrack3,
 			minuteTrack4, minuteTrack6, minuteTrack7, minuteTrack8, minuteTrack9,
@@ -224,7 +233,7 @@ window.onload = function () {
 		});
 	}
 
-	// Aesthetic design of the dial will be drawn when called___________________
+	// Aesthetic design of the dial will be drawn when called
 	function drawFaceDetails() {
 		// Calls the draw minuteTrackFunction, thus displaying the 48 small 
 		// face indices
@@ -257,7 +266,7 @@ window.onload = function () {
 			.attr({ fill: " #ffffb3", stroke: "" });
 	}
 
-	// Draws the hour numerals on the dial face_________________________________
+	// Draws the hour numerals on the dial face
 	function numberFace() {
 		var display1  = paper.text(465, 290, "1" )
 		var display2  = paper.text(510, 340, "2" )
@@ -282,7 +291,7 @@ window.onload = function () {
 		});
 	}
 
-	// Draws the seconds numerals around the dial's edge ( 5, 10, 15 etc )______
+	// Draws the seconds numerals around the dial's edge ( 5, 10, 15 etc )
 	function secondsNumberFace() {
 		var second5  = paper.text(495, 235, "5" )
 		var second10 = paper.text(565, 305, "10")
@@ -316,12 +325,14 @@ window.onload = function () {
 	numberFace();
 	drawCrystal();
 
-	// Creating the second, minute and hour hands. 
-	// Creating a "balance" to go on the back end of the seconds hand
-	// Creating the centre pin
-	// Creating the digital clock
-	// Creating the calendar / date 
-
+//______________________________________________________________________________
+//    _____   
+//   / ___ `. 
+//  |_/___) |       Drawing the moving assets.
+//   .'____.' 
+//  / /_____  
+//  |_______| 
+			 
 	var hours = paper.rect(396, 396, 8, 105, 10);
 	hours.attr({
 		fill: "#ffff99", 'fill-opacity': 0, stroke: "#595959",
@@ -378,80 +389,184 @@ window.onload = function () {
 		crystal.attr({ fill: 'white', 'fill-opacity': 0.1, 'stroke': "" });
 	}
 
-	var hoursUp     = paper.circle(700,600,10).attr({fill: "pink"});
-	var hoursDown   = paper.circle(700,620,10).attr({fill: "pink"});
-	var minutesUp   = paper.circle(750,600,10).attr({fill: "pink"});
-	var minutesDown = paper.circle(750,620,10).attr({fill: "pink"});
-	var secondsUp   = paper.circle(800,600,10).attr({fill: "pink"});
-	var secondsDown = paper.circle(800,620,10).attr({fill: "pink"});
+//_____________________________________________________________________________
+//    ______          _________  _                      
+//   / ____ `.       |  _   _  |(_)                     
+//   `'  __) |       |_/ | | \_|__   _ .--..--.  .---.  
+//   _  |__ '.           | |   [  | [ `.-. .-. |/ /__\\ 
+//  | \____) |          _| |_   | |  | | | | | || \__., 
+//   \______.'         |_____| [___][___||__||__]'.__.' 
 
-	// startTime() creates variables storing computer time______________________
+	var timeExplain = paper.rect  (750,500,200,180,10)     .attr({fill:"#bfbfbf", stroke:  "#999999"});
+	var timeSetting = paper.text  (850,520,"Time settings").attr({fill:"white", font: "20px Calibri"});
+	
+	var hourSet     = paper.text  (780,560,"Hour \n+"  ).attr({fill: "white",   font: "15px Calibri"});
+	var hourSet     = paper.text  (780,650,"-\n Hour"  ).attr({fill: "white",   font: "15px Calibri"});
+
+	var minuteSet   = paper.text  (850,560,"Minute \n+").attr({fill: "white",	font: "15px Calibri"});
+	var minuteSet   = paper.text  (850,650,"-\n Minute").attr({fill: "white",	font: "15px Calibri"});
+
+	var secondSet   = paper.text  (920,560,"Second \n+").attr({fill: "white",	font: "15px Calibri"});
+	var secondSet   = paper.text  (920,650,"-\n Second").attr({fill: "white",	font: "15px Calibri"});
+
+	var hourUp      = paper.circle(780,590,10).attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+	var hourDown    = paper.circle(780,620,10).attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+	var minuteUp    = paper.circle(850,590,10).attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+	var minuteDown  = paper.circle(850,620,10).attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+	var secondUp    = paper.circle(920,590,10).attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+	var secondDown  = paper.circle(920,620,10).attr({ fill: "90-#001a09-#bfbfbf", stroke: "#999999" });
+
+	var today       = 0;
+	var hour        = 0;
+	var minute      = 0;
+	var second      = 0;
+	var secOffset   = 0;
+	var minOffset   = 0;
+	var hourOffset  = 0;
+	
+	secondUp.click(function () {
+		secOffset++;
+	});
+
+	secondDown.click(function () {
+		secOffset--;
+	});
+
+	minuteUp.click(function () {
+		minOffset++;
+	});
+
+	minuteDown.click(function () {
+		minOffset--;
+	});
+
+	hourUp.click(function () {
+		hourOffset++;
+	});
+
+	hourDown.click(function () {
+		hourOffset--;
+	});
+
+	// startTime() creates variables storing computer time
 	function startTime() {
 
-		var today = new Date();
-		var h = today.getHours();
-		var m = today.getMinutes();
-		var s = today.getSeconds();
-		var ms = today.getMilliseconds();
+		today  = new Date();
 
-		h = checkTime(h);
-		m = checkTime(m);
-		s = checkTime(s);
+		today.setHours(today.getHours() + hourOffset)
+		today.setMinutes(today.getMinutes() + minOffset)
+		today.setSeconds(today.getSeconds() + secOffset)
 
-		// Digital clock feeds off these variables
-		displaytext.attr({ text: h + ":" + m + ":" + s })
+		hour = today.getHours();
+		minute = today.getMinutes();
+		second = today.getSeconds();
 
-		// Analogue clock hands animated off data from digital clock's variables
-		seconds.animate        ({ transform: ['r', (s * 6 ) + 180, 400, 400] });
-		secondsBalance.animate ({ transform: ['r', (s * 6 ) + 0,   400, 400] });
-		minutes.animate        ({ transform: ['r', (m * 6 ) + 180, 400, 400] });
-		hours.animate          ({ transform: ['r', (h * 30) + 180, 400, 400] });
+		hour   = checkTime( hour   );
+		minute = checkTime( minute );
+		second = checkTime( second );
+
+		displaytext.attr({ text: hour + ":" + minute + ":" + second })
+
+		seconds       .animate({ transform: ['r', (second * 6) + 180, 400, 400] });
+		secondsBalance.animate({ transform: ['r', (second * 6) +   0, 400, 400] });
+		minutes       .animate({ transform: ['r', (minute * 6) + 180, 400, 400] });
+		hours         .animate({ transform: ['r', (hour  * 30) + 180, 400, 400] });
 
 		console.log("startTime");
 		var t = setTimeout(startTime, 500);
 	}
 
-	// Makes sure seconds, minutes and hours have a zero when appropriate_______
+	// Makes sure seconds, minutes and hours have a zero when appropriate
 	function checkTime(i) {
 		if (i < 10) { i = "0" + i };
 		return i;
 	}
 
-	var dayUp     = paper.circle(700,700,10).attr({fill: "pink"});
-	var dayDown   = paper.circle(700,720,10).attr({fill: "pink"});
-	var monthUp   = paper.circle(750,700,10).attr({fill: "pink"});
-	var monthDown = paper.circle(750,720,10).attr({fill: "pink"});
-	var yearUp    = paper.circle(800,700,10).attr({fill: "pink"});
-	var yearDown  = paper.circle(800,720,10).attr({fill: "pink"});
+//______________________________________________________________________________
+//    _    _            ______           _               
+//   | |  | |          |_   _ `.        / |_                 
+//   | |__| |_           | | `. \ ,--. `| |-'.---.  
+//   |____   _|          | |  | |`'_\ : | | / /__\\ 
+//       _| |_          _| |_.' /// | |,| |,| \__., 
+//      |_____|        |______.' \'-;__/\__/ '.__.' 
 
-	var date = new Date();
-	var year  = date.getFullYear();
-	var month = date.getMonth() + 1;
-	var day   = date.getDate();
+	var calExplain  = paper.rect  (750,200,200,180,10).attr({ fill: "#ffffb3", stroke: "#999999" });
+	var calText     = paper.text  (850,220, "Calendar settings").attr({fill: "#1a1a1a",	font: "20px Calibri",});
+	
+	var daySet      = paper.text  (780,260, "Day \n+").attr({fill: "#1a1a1a",	font: "15px Calibri",});
+	var daySet      = paper.text  (780,350, "-\n Day").attr({fill: "#1a1a1a",	font: "15px Calibri",});
+
+	var monthSet    = paper.text  (850,260, "Month \n+").attr({fill: "#1a1a1a",	font: "15px Calibri",});
+	var monthSet    = paper.text  (850,350, "-\n Month").attr({fill: "#1a1a1a",	font: "15px Calibri",});
+
+	var yearSet     = paper.text  (920,260, "Year \n+").attr({fill: "#1a1a1a",	font: "15px Calibri",});;
+	var yearSet     = paper.text  (920,350, "-\n Year").attr({fill: "#1a1a1a",	font: "15px Calibri"});
+
+	var dayUp       = paper.circle(780,290,10).attr({ fill: " 90-#b3b300-#ffffb3", stroke: "#ffffe6" });
+	var dayDown     = paper.circle(780,320,10).attr({ fill: " 90-#b3b300-#ffffb3", stroke: "#ffffe6" });
+	var monthUp     = paper.circle(850,290,10).attr({ fill: " 90-#b3b300-#ffffb3", stroke: "#ffffe6" });
+	var monthDown   = paper.circle(850,320,10).attr({ fill: " 90-#b3b300-#ffffb3", stroke: "#ffffe6" });
+	var yearUp      = paper.circle(920,290,10).attr({ fill: " 90-#b3b300-#ffffb3", stroke: "#ffffe6" });
+	var yearDown    = paper.circle(920,320,10).attr({ fill: " 90-#b3b300-#ffffb3", stroke: "#ffffe6" });
+
+	var date        = 0;
+	var year        = 0;
+	var month       = 0;
+	var day         = 0;
+	var dayOffset   = 0;
+	var monthOffset = 0;
+	var yearOffset  = 0;
 
 	dayUp.click(function () {
-		changeDay(day);
-		console.log(day);
+		dayOffset++;
 	});
 
 	dayDown.click(function () {
-		changeDay(day);
+		dayOffset--;
 	});
 
-	function changeDay(i) {
-		day++;
-	}
+	monthUp.click(function () {
+		monthOffset++;
+	});
+
+	monthDown.click(function () {
+		monthOffset--;
+	});
+
+	yearUp.click(function () {
+		yearOffset++;
+	});
+
+	yearDown.click(function () {
+		yearOffset--;
+	});
 
 	// startDate() works like startTime()_______________________________________
 	function startDate() {
 
-		if (day >31){day=1}
+		date  = new Date();
+		
+		date.setDate(date.getDate() + dayOffset);
+		date.setMonth(date.getMonth() + monthOffset);
+		date.setFullYear(date.getFullYear() + yearOffset);
+
+		day    = date.getDate();
+		month  = date.getMonth() + 1;
+		year   = date.getFullYear();
 
 		calendar.attr({ text: day + "|" + month + "|" + year });
 
 		console.log("startDate");
 		var t = setTimeout(startDate, 500);
 	}
+//______________________________________________________________________________
+//    _______            ______                        __   
+//   |  _____|          |_   _ \                      [  |  
+//   | |____              | |_) |  .---.  ____  .---.  | |  
+//   '_.____''.           |  __'. / /__\\[_   ]/ /__\\ | |  
+//   | \____) |          _| |__) || \__., .' /_| \__., | |  
+//    \______.'         |_______/  '.__.'[_____]'.__.'[___] 
+
 
 	function rotatingBezel() {
 		var textBox = paper.rect(600, 30, 300, 100, 10).attr({
@@ -486,7 +601,13 @@ window.onload = function () {
 	var glass = paper.image("glassNew.png", 200, 200, 400, 400);
 
 	rotatingBezel();
-	startTime();          //Function call that starts the startTime function____
-	startDate();
-
+//______________________________________________________________________________
+//
+    startTime();   //      _____ _             _   
+	startDate();   //     /  ___| |           | |  
+//	                      \ `--.| |_ __ _ _ __| |_ 
+//                         `--. \ __/ _` | '__| __|
+//                        /\__/ / || (_| | |  | |_ 
+//                        \____/ \__\__,_|_|   \__|
+//
 };
